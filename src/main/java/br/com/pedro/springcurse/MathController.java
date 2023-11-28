@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.pedro.springcurse.exceptions.UnsupportedMathOperationException;
+
 
 @RestController
 @RequestMapping("/")
@@ -14,7 +16,7 @@ public class MathController {
     public Double sum (@PathVariable(value = "n1") String n1, @PathVariable(value = "n2") String n2) throws Exception{
 
         if(!isNumeric(n1) || !isNumeric(n2)){
-            throw new Exception("NÃO É UM NUMERO");
+            throw new UnsupportedMathOperationException("Please set a numeric value");
         }
 
         return convertToDouble(n1) +convertToDouble(n2) ;
