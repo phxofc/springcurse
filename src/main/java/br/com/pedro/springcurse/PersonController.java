@@ -19,7 +19,7 @@ public class PersonController {
 
 
      @GetMapping("/{id}")
-    public Person findById(@PathVariable(value = "id") String id) throws Exception{
+    public Person findById(@PathVariable(value = "id") Long id) throws Exception{
         return  personServices.findById(id);
     }
 
@@ -38,7 +38,7 @@ public class PersonController {
         return  personServices.update(person);
     }
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable(value = "id") String id) throws Exception{
+    public void delete(@PathVariable(value = "id") Long id) throws Exception{
         personServices.delete(id);
     }
 
