@@ -1,11 +1,11 @@
-package br.com.pedro.springcurse;
+package br.com.pedro.springcurse.controllers;
 
-import br.com.pedro.springcurse.model.Person;
+import br.com.pedro.springcurse.data.model.Person;
+import br.com.pedro.springcurse.data.vo.PersonVO;
 import br.com.pedro.springcurse.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,22 +19,22 @@ public class PersonController {
 
 
      @GetMapping("/{id}")
-    public Person findById(@PathVariable(value = "id") Long id) throws Exception{
+    public PersonVO findById(@PathVariable(value = "id") Long id) throws Exception{
         return  personServices.findById(id);
     }
 
     @GetMapping
-    public List<Person> findByAll() throws Exception{
+    public List<PersonVO> findByAll() throws Exception{
         return  personServices.findAll();
     }
 
     @PostMapping
-    public Person create(@RequestBody Person person) throws Exception{
+    public PersonVO create(@RequestBody Person person) throws Exception{
         return  personServices.create(person);
     }
 
     @PutMapping
-    public Person update(@RequestBody Person person) throws Exception{
+    public PersonVO update(@RequestBody Person person) throws Exception{
         return  personServices.update(person);
     }
     @DeleteMapping("/{id}")

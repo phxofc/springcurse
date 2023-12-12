@@ -1,4 +1,4 @@
-package br.com.pedro.springcurse.model;
+package br.com.pedro.springcurse.data.model;
 
 import jakarta.persistence.*;
 
