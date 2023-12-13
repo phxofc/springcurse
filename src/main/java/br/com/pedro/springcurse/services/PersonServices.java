@@ -3,6 +3,7 @@ package br.com.pedro.springcurse.services;
 import br.com.pedro.springcurse.data.vo.PersonVO;
 import br.com.pedro.springcurse.exceptions.ResourceNotFoundException;
 import br.com.pedro.springcurse.data.model.Person;
+import br.com.pedro.springcurse.mapper.DozerMapper;
 import br.com.pedro.springcurse.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,20 +21,25 @@ public class PersonServices {
     public PersonVO findById(Long id){
         logger.info("FINDING ONE PERSON");
 
+        var entity = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("NO RECORDS FOUND FOR THIS ID!"));
 
-        return repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("NO RECORDS FOUND FOR THIS ID!"));
+        return DozerMapper.parseObject(entity,PersonVO.class);
     }
 
     public List<PersonVO> findAll(){
         logger.info("FINDING all People");
 
-        return repository.findAll();
+        return DozerMapper.parseListObject(repository.findAll(),PersonVO.class);
     }
 
     public PersonVO create (PersonVO person){
         logger.info("creating one person");
 
-        return repository.save(person);
+        var entity = DozerMapper.parseObject(person,Person.class);
+
+        var vo = DozerMapper.parseObject(repository.save(entity),PersonVO.class);
+        return vo;
+
     }
     public PersonVO update (PersonVO person){
         logger.info("update one person");
@@ -45,7 +51,8 @@ public class PersonServices {
        entity.setAddress(person.getAddress());
        entity.setGender(person.getGender());
 
-        return repository.save(entity);
+        var vo = DozerMapper.parseObject(repository.save(entity),PersonVO.class);
+        return vo;
     }
     public void delete (Long id){
         var entity =  repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("NO RECORDS FOUND FOR THIS ID!"));

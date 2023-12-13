@@ -18,7 +18,7 @@ public class DozerMapper {
         for (O o: origin) {
             destinationObjects.add(mapper.map(o,destination));
         }
-        return git adestinationObjects;
+        return  destinationObjects;
 
     }
 

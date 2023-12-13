@@ -29,12 +29,12 @@ public class PersonController {
     }
 
     @PostMapping
-    public PersonVO create(@RequestBody Person person) throws Exception{
+    public PersonVO create(@RequestBody PersonVO person) throws Exception{
         return  personServices.create(person);
     }
 
     @PutMapping
-    public PersonVO update(@RequestBody Person person) throws Exception{
+    public PersonVO update(@RequestBody PersonVO person) throws Exception{
         return  personServices.update(person);
     }
     @DeleteMapping("/{id}")
