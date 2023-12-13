@@ -1,14 +1,19 @@
 package br.com.pedro.springcurse.data.vo;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@JsonPropertyOrder({"id","firstName","lastName","gender","address"})
 public class PersonVO implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     private long id;
 
+    @JsonProperty("fist_name")
     private String firstName;
 
     private String lastName;
