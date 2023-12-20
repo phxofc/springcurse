@@ -10,4 +10,7 @@ public class SpringcurseApplication {
 		SpringApplication.run(SpringcurseApplication.class, args);
 	}
 
+
+
+
 }
