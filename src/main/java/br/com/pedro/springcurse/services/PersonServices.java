@@ -26,31 +26,45 @@ public class PersonServices {
 
         var entity = repository.findById(id).orElseThrow(()->
                 new ResourceNotFoundException("NO RECORDS FOUND FOR THIS ID!"));
+        logger.info("Antes de salvar: ID = " + entity.getId());
 
-        PersonVO vo = DozerMapper.parseObject(entity,PersonVO.class);
+        var vo = DozerMapper.parseObject(entity,PersonVO.class);
+        logger.info("passado no dozzer = " + vo.getKey());
         vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+        logger.info("passado no hateos = " + vo.getKey());
         return vo;
     }
 
     public List<PersonVO> findAll(){
         logger.info("FINDING all People");
 
-        return DozerMapper.parseListObject(repository.findAll(),PersonVO.class);
+        var persons =  DozerMapper.parseListObject(repository.findAll(),PersonVO.class);
+        persons
+                .stream()
+                .forEach(p -> {
+                    try {
+                        p.add(linkTo(methodOn(PersonController.class).findById(p.getKey())).withSelfRel());
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+        return persons;
     }
 
-    public PersonVO create (PersonVO person){
+    public PersonVO create (PersonVO person) throws Exception {
         logger.info("creating one person");
 
         var entity = DozerMapper.parseObject(person,Person.class);
 
         var vo = DozerMapper.parseObject(repository.save(entity),PersonVO.class);
+        vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
         return vo;
 
     }
-    public PersonVO update (PersonVO person){
+    public PersonVO update (PersonVO person) throws Exception {
         logger.info("update one person");
 
-       var entity =  repository.findById(person.getId()).orElseThrow(()-> new ResourceNotFoundException("NO RECORDS FOUND FOR THIS ID!"));
+       var entity =  repository.findById(person.getKey()).orElseThrow(()-> new ResourceNotFoundException("NO RECORDS FOUND FOR THIS ID!"));
 
        entity.setFirstName(person.getFirstName());
        entity.setLastName(person.getLastName());
@@ -58,6 +72,7 @@ public class PersonServices {
        entity.setGender(person.getGender());
 
         var vo = DozerMapper.parseObject(repository.save(entity),PersonVO.class);
+        vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
         return vo;
     }
     public void delete (Long id){
