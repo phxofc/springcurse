@@ -2,6 +2,7 @@ package br.com.pedro.springcurse.services;
 
 import br.com.pedro.springcurse.controllers.PersonController;
 import br.com.pedro.springcurse.data.vo.PersonVO;
+import br.com.pedro.springcurse.exceptions.RequiredObjectIsNullException;
 import br.com.pedro.springcurse.exceptions.ResourceNotFoundException;
 import br.com.pedro.springcurse.data.model.Person;
 import br.com.pedro.springcurse.mapper.DozerMapper;
@@ -52,6 +53,7 @@ public class PersonServices {
     }
 
     public PersonVO create (PersonVO person) throws Exception {
+        if (person== null) throw new RequiredObjectIsNullException();
         logger.info("creating one person");
 
         var entity = DozerMapper.parseObject(person,Person.class);
@@ -62,6 +64,7 @@ public class PersonServices {
 
     }
     public PersonVO update (PersonVO person) throws Exception {
+        if (person== null) throw new RequiredObjectIsNullException();
         logger.info("update one person");
 
        var entity =  repository.findById(person.getKey()).orElseThrow(()-> new ResourceNotFoundException("NO RECORDS FOUND FOR THIS ID!"));
