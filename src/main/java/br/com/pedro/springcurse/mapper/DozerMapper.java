@@ -3,6 +3,8 @@ package br.com.pedro.springcurse.mapper;
 //import com.github.dozermapper.core.DozerBeanMapperBuilder;
 //import com.github.dozermapper.core.Mapper;
 
+import br.com.pedro.springcurse.data.model.Person;
+import br.com.pedro.springcurse.data.vo.PersonVO;
 import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
@@ -12,6 +14,13 @@ public class DozerMapper {
     //private static Mapper mapper = DozerBeanMapperBuilder.buildDefault();
     private static ModelMapper mapper = new ModelMapper();
 
+    static {
+        mapper.createTypeMap(
+                Person.class,
+                PersonVO.class).addMapping(
+                        Person::getId,PersonVO::setKey);
+
+    }
 
     public static <O, D> D parseObject(O origin, Class<D> destination){
         return  mapper.map(origin,destination);
