@@ -23,23 +23,17 @@ public class PersonController {
         return personServices.findById(id);
     }
 
-    @GetMapping(
-            consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,MediaType.APPLICATION_YML }
-            , produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,MediaType.APPLICATION_YML })
+    @GetMapping()
     public List<PersonVO> findByAll() throws Exception {
         return personServices.findAll();
     }
 
-    @PostMapping(
-            consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,MediaType.APPLICATION_YML }
-            , produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,MediaType.APPLICATION_YML })
+    @PostMapping()
     public PersonVO create(@RequestBody PersonVO person) throws Exception {
         return personServices.create(person);
     }
 
-    @PutMapping(
-            consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,MediaType.APPLICATION_YML}
-            , produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,MediaType.APPLICATION_YML})
+    @PutMapping()
     public PersonVO update(@RequestBody PersonVO person) throws Exception {
         return personServices.update(person);
     }

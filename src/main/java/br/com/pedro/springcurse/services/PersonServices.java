@@ -1,11 +1,14 @@
 package br.com.pedro.springcurse.services;
 
+import br.com.pedro.springcurse.controllers.PersonController;
 import br.com.pedro.springcurse.data.vo.PersonVO;
 import br.com.pedro.springcurse.exceptions.ResourceNotFoundException;
 import br.com.pedro.springcurse.data.model.Person;
 import br.com.pedro.springcurse.mapper.DozerMapper;
 import br.com.pedro.springcurse.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,12 +21,15 @@ public class PersonServices {
 
     private Logger logger = Logger.getLogger(PersonServices.class.getName());
 
-    public PersonVO findById(Long id){
+    public PersonVO findById(Long id) throws Exception {
         logger.info("FINDING ONE PERSON");
 
-        var entity = repository.findById(id).orElseThrow(()-> new ResourceNotFoundException("NO RECORDS FOUND FOR THIS ID!"));
+        var entity = repository.findById(id).orElseThrow(()->
+                new ResourceNotFoundException("NO RECORDS FOUND FOR THIS ID!"));
 
-        return DozerMapper.parseObject(entity,PersonVO.class);
+        PersonVO vo = DozerMapper.parseObject(entity,PersonVO.class);
+        vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+        return vo;
     }
 
     public List<PersonVO> findAll(){
