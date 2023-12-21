@@ -38,7 +38,7 @@ class PersonServicesTest {
 
     @Test
     void findById() throws Exception {
-        Person person  = input.mockEntity();
+        Person person  = input.mockEntity(1);
         person.setId(1L);
         when(repository.findById(1L)).thenReturn(Optional.of(person));
         var result = service.findById(1L);
