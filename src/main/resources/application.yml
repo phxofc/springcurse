@@ -8,3 +8,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+spring-doc:
+  pathsToMatch: /person/**
+  swagger-ui:
+    use-root-path: true
