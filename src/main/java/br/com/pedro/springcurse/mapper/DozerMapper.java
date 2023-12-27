@@ -3,7 +3,9 @@ package br.com.pedro.springcurse.mapper;
 //import com.github.dozermapper.core.DozerBeanMapperBuilder;
 //import com.github.dozermapper.core.Mapper;
 
+import br.com.pedro.springcurse.data.model.Book;
 import br.com.pedro.springcurse.data.model.Person;
+import br.com.pedro.springcurse.data.vo.BookVO;
 import br.com.pedro.springcurse.data.vo.PersonVO;
 import org.modelmapper.ModelMapper;
 
@@ -19,6 +21,13 @@ public class DozerMapper {
                 Person.class,
                 PersonVO.class).addMapping(
                         Person::getId,PersonVO::setKey);
+
+    }
+    static {
+        mapper.createTypeMap(
+                Book.class,
+                BookVO.class).addMapping(
+                Book::getId,BookVO::setKey);
 
     }
 
