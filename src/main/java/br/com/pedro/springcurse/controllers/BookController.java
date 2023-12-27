@@ -24,7 +24,7 @@ public class BookController {
 
     @GetMapping(value = "/{id}")
     @Operation(summary = "Finds A Book", description = "Finds A Book",
-            tags = {"Books"},
+
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200",
                             content =
@@ -42,7 +42,7 @@ public class BookController {
 
     @GetMapping()
     @Operation(summary = "Finds All Books", description = "Finds All Books",
-            tags = {"Books"},
+
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200",
                             content = {
@@ -64,7 +64,7 @@ public class BookController {
 
     @PostMapping()
     @Operation(summary = "create a book", description = "create A book",
-            tags = {"Books"},
+
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200",
                             content =
@@ -81,7 +81,7 @@ public class BookController {
 
     @PutMapping()
     @Operation(summary = "Modify A Book", description = "Modify A Book",
-            tags = {"Books"},
+
             responses = {
                     @ApiResponse(description = "Updated", responseCode = "200",
                             content =
@@ -98,7 +98,7 @@ public class BookController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Deletes A Book", description = "Deletes A Books",
-            tags = {"Books"},
+
             responses = {
                     @ApiResponse(description = "No Content", responseCode = "204", content = @Content
                     ),

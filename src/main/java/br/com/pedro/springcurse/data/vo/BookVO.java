@@ -1,6 +1,8 @@
 package br.com.pedro.springcurse.data.vo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.hateoas.RepresentationModel;
+
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,23 +12,18 @@ public class BookVO extends RepresentationModel<BookVO> implements Serializable 
 
     private static final Long serialVersionUID = 1L;
 
-    private Long id;
+    @JsonProperty("id")
+
+    private Long key;
     private String author;
     private Date launch_date;
     private double price;
     private String title;
 
-    public BookVO(){
+    public BookVO() {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getAuthor() {
         return author;
@@ -60,16 +57,28 @@ public class BookVO extends RepresentationModel<BookVO> implements Serializable 
         this.title = title;
     }
 
+    public Long getKey() {
+        return key;
+    }
+
+    public void setKey(Long key) {
+        this.key = key;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         BookVO bookVO = (BookVO) o;
-        return Double.compare(price, bookVO.price) == 0 && Objects.equals(id, bookVO.id) && Objects.equals(author, bookVO.author) && Objects.equals(launch_date, bookVO.launch_date) && Objects.equals(title, bookVO.title);
+        return Double.compare(price, bookVO.price) == 0 && Objects.equals(key, bookVO.key) && Objects.equals(author, bookVO.author) && Objects.equals(launch_date, bookVO.launch_date) && Objects.equals(title, bookVO.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, author, launch_date, price, title);
+        return Objects.hash(super.hashCode(), key, author, launch_date, price, title);
     }
 }
+
+

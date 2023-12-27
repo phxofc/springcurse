@@ -15,8 +15,9 @@ public class Book implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String author;
+    @Temporal(TemporalType.DATE)
     private Date launch_date;
-    private double price;
+    private Double price;
     private String title;
 
     public Book(){
@@ -47,11 +48,11 @@ public class Book implements Serializable {
         this.launch_date = launch_date;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

@@ -26,7 +26,7 @@ public class PersonController {
 
     @GetMapping(value = "/{id}")
     @Operation(summary = "Finds A Person", description = "Finds A Person",
-            tags = {"Peoples"},
+
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200",
                             content =
@@ -44,7 +44,7 @@ public class PersonController {
 
     @GetMapping()
     @Operation(summary = "Finds All People", description = "Finds All People",
-            tags = {"Peoples"},
+
             responses = {
             @ApiResponse(description = "Success", responseCode = "200",
                     content = {
@@ -65,7 +65,7 @@ public class PersonController {
 
     @PostMapping()
     @Operation(summary = "create a person", description = "create A Person",
-            tags = {"Peoples"},
+
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200",
                             content =
@@ -81,7 +81,7 @@ public class PersonController {
 
     @PutMapping()
     @Operation(summary = "Modify A Person", description = "Modify A Person",
-            tags = {"Peoples"},
+
             responses = {
                     @ApiResponse(description = "Updated", responseCode = "200",
                             content =
@@ -98,7 +98,7 @@ public class PersonController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Deletes A Person", description = "Deletes A Person",
-            tags = {"Peoples"},
+
             responses = {
                     @ApiResponse(description = "No Content", responseCode = "204", content = @Content
                     ),

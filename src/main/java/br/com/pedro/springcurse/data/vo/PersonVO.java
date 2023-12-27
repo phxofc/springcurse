@@ -1,7 +1,6 @@
 package br.com.pedro.springcurse.data.vo;
 
 
-import br.com.pedro.springcurse.data.model.Person;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.springframework.hateoas.RepresentationModel;
