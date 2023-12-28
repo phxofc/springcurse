@@ -9,6 +9,6 @@ spring:
     hibernate:
       ddl-auto: none
 spring-doc:
-  pathsToMatch: /person/**
+  pathsToMatch: /person/**,/book/**
   swagger-ui:
     use-root-path: true
