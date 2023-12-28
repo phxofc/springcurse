@@ -6,4 +6,6 @@ public class TestConfigs {
     public static final String CONTENT_TYPE_JSON = "application/json";
     public static final String CONTENT_TYPE_XML = "application/xml";
     public static final String CONTENT_TYPE_YML = "application/x-yml";
+    public static final String ORIGIN_PEDRO = "https://localhost:8080";
+    public static final String ORIGIN_HENRIQUE = "https://henrique.com.br";
 }
