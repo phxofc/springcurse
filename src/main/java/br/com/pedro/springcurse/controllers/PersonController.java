@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+//@CrossOrigin
 @RestController
 @RequestMapping("/person")
 @Tag(name = "People", description = "Endpoins for Maneging People")
@@ -24,6 +25,7 @@ public class PersonController {
     PersonServices personServices;
 
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value = "/{id}")
     @Operation(summary = "Finds A Person", description = "Finds A Person",
 
@@ -63,6 +65,7 @@ public class PersonController {
         return personServices.findAll();
     }
 
+    @CrossOrigin(origins = {"http://localhost:8080","http://pedro.com.br"})
     @PostMapping()
     @Operation(summary = "create a person", description = "create A Person",
 
